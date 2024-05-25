@@ -7,6 +7,7 @@
 2. `npx soul-engine login` Login/Signup for the Soul Engine! 
 3. Copy `.envsample`, rename to `.env` and add your organization and API key. 
 4. `npm run dev` awaken your first Soul.
+5. Learn more at [https://docs.souls.chat/](https://docs.souls.chat/).
 
 ## Things to see
 
