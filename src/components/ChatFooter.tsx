@@ -6,20 +6,18 @@ import SoulForm from "./SoulForm";
 import {
   ArrowUpIcon,
   DiscordLogoIcon,
-  FileTextIcon,
-  EyeOpenIcon,
   ReaderIcon,
-  Cross1Icon,
   OpenInNewWindowIcon,
 } from "@radix-ui/react-icons";
-import { Soul } from "@opensouls/engine";
+import { Soul, SoulOpts } from "@opensouls/engine";
 
 interface ChatFooterProps {
   soul: Soul | null;
+  soulProps: SoulOpts;
   onSendMessage: (inputText: string) => void;
 }
 
-const ChatFooter: React.FC<ChatFooterProps> = ({ soul, onSendMessage }) => {
+const ChatFooter: React.FC<ChatFooterProps> = ({ soul, soulProps, onSendMessage }) => {
   const [inputText, setInputText] = useState("");
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false); // State to manage focus
@@ -57,14 +55,18 @@ const ChatFooter: React.FC<ChatFooterProps> = ({ soul, onSendMessage }) => {
             height={24}
             width={140}
           />
-          <ChatInput
-            inputText={inputText}
-            handleInputChange={handleInputChange}
-            handleSend={handleSend}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-          />
-          <SoulDebuggerButton soul={soul} />
+
+          <div className="flex flex-row items-center gap-0">
+            <ChatInput
+              inputText={inputText}
+              handleInputChange={handleInputChange}
+              handleSend={handleSend}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+            <SoulDebuggerButton soul={soul} soulProps={soulProps} />
+          </div>
+
           <div className="flex items-center justify-between gap-2">
             <Button
               className="p-2 cursor-pointer"
@@ -110,10 +112,11 @@ const ChatFooter: React.FC<ChatFooterProps> = ({ soul, onSendMessage }) => {
   );
 };
 
-function SoulDebuggerButton({soul} : {soul: Soul | null}) {
+function SoulDebuggerButton({ soul, soulProps }: { soul: Soul | null, soulProps: SoulOpts}) {
 
   const openDebugger = () => {
-    const url = `https://debug.souls.chat/?soul=${soul?.soulId}`;
+    
+    const url = `https://souls.chat/chats/${soulProps.organization}/${soulProps.blueprint}/${soul?.soulId}`;
     window.open(url, '_blank');
   }
 

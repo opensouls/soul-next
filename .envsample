@@ -1,9 +1,8 @@
-NEXT_PUBLIC_SOUL_ENGINE_ORGANIZATION='neilsonnn'
+# your Discord or Github username
+NEXT_PUBLIC_SOUL_ENGINE_ORGANIZATION=''
+
+# the blueprint of your soul
 NEXT_PUBLIC_SOUL_ENGINE_BLUEPRINT='samantha-learns'
 
 # get this key by using npx soul-engine apikey
 NEXT_PUBLIC_SOUL_ENGINE_APIKEY=''
-NEXT_PUBLIC_SOUL_ENGINE_DASHBOARD='true'
-NEXT_PUBLIC_SOUL_ENGINE_PROD='true'
-NEXT_PUBLIC_SOUL_ENGINE_LOCAL='false'
-NEXT_PUBLIC_DEBUG='false'
