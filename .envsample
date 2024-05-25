@@ -1,8 +1,9 @@
-# your Discord or Github username
+# Your Discord or Github username.
 NEXT_PUBLIC_SOUL_ENGINE_ORGANIZATION=''
 
-# the blueprint of your soul
+# The blueprint of your soul.
 NEXT_PUBLIC_SOUL_ENGINE_BLUEPRINT='samantha-learns'
 
-# get this key by using npx soul-engine apikey
+# Get this key by using 'npx soul-engine apikey'
+# This enables the button to open the Soul Engine debugger.
 NEXT_PUBLIC_SOUL_ENGINE_APIKEY=''

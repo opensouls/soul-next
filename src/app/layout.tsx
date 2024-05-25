@@ -5,7 +5,7 @@ import "@radix-ui/themes/styles.css";
 import { Theme, ThemePanel } from "@radix-ui/themes";
 
 export const metadata: Metadata = {
-  title: "OS v0.1.0",
+  title: "OPEN SOULS",
   description: "OS v0.1.0 - in progress",
 };
 

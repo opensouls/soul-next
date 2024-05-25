@@ -114,14 +114,14 @@ const ChatFooter: React.FC<ChatFooterProps> = ({ soul, soulProps, onSendMessage 
 
 function SoulDebuggerButton({ soul, soulProps }: { soul: Soul | null, soulProps: SoulOpts}) {
 
+  const disableDebugger = !soul || soul?.soulId === undefined || process.env.NEXT_PUBLIC_SOUL_ENGINE_APIKEY === undefined;
   const openDebugger = () => {
-    
     const url = `https://souls.chat/chats/${soulProps.organization}/${soulProps.blueprint}/${soul?.soulId}`;
     window.open(url, '_blank');
   }
 
   return (
-    <Button onClick={openDebugger} size="3" variant="solid" disabled={!soul || soul?.soulId === undefined}>
+    <Button onClick={openDebugger} size="3" variant="solid" disabled={disableDebugger}>
       <OpenInNewWindowIcon />
     </Button>
   );
