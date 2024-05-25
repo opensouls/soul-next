@@ -10,13 +10,16 @@ import {
   EyeOpenIcon,
   ReaderIcon,
   Cross1Icon,
+  OpenInNewWindowIcon,
 } from "@radix-ui/react-icons";
+import { Soul } from "@opensouls/engine";
 
 interface ChatFooterProps {
+  soul: Soul | null;
   onSendMessage: (inputText: string) => void;
 }
 
-const ChatFooter: React.FC<ChatFooterProps> = ({ onSendMessage }) => {
+const ChatFooter: React.FC<ChatFooterProps> = ({ soul, onSendMessage }) => {
   const [inputText, setInputText] = useState("");
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false); // State to manage focus
@@ -61,6 +64,7 @@ const ChatFooter: React.FC<ChatFooterProps> = ({ onSendMessage }) => {
             onFocus={handleFocus}
             onBlur={handleBlur}
           />
+          <SoulDebuggerButton soul={soul} />
           <div className="flex items-center justify-between gap-2">
             <Button
               className="p-2 cursor-pointer"
@@ -105,5 +109,19 @@ const ChatFooter: React.FC<ChatFooterProps> = ({ onSendMessage }) => {
     </>
   );
 };
+
+function SoulDebuggerButton({soul} : {soul: Soul | null}) {
+
+  const openDebugger = () => {
+    const url = `https://debug.souls.chat/?soul=${soul?.soulId}`;
+    window.open(url, '_blank');
+  }
+
+  return (
+    <Button onClick={openDebugger} size="3" variant="solid" disabled={!soul || soul?.soulId === undefined}>
+      <OpenInNewWindowIcon />
+    </Button>
+  );
+}
 
 export default ChatFooter;

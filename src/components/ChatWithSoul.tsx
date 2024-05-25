@@ -7,7 +7,7 @@ import process from "process";
 
 function ChatWithSoul() {
   const [messages, setMessages] = useState([]);
-  const [soulInstance, setSoulInstance] = useState(null);
+  const [soulInstance, setSoulInstance] = useState<Soul | null>(null);
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
@@ -31,6 +31,8 @@ function ChatWithSoul() {
             { sender: "Soul", text: response },
           ]);
         });
+
+        // set up other events with soul.on("actionName",....)
       })
       .catch((error) => {
         console.error("Failed to connect to Soul:", error);
@@ -53,7 +55,7 @@ function ChatWithSoul() {
   }, [soulInstance, initialized]);
 
   // Function to handle sending a message
-  const handleSendMessage = async (inputText) => {
+  const handleSendMessage = async (inputText:string) => {
     // Check if the Soul instance is started before dispatching a message
     if (soulInstance && soulInstance.connected) {
       try {
@@ -70,7 +72,7 @@ function ChatWithSoul() {
   return (
     <div className="container">
       <div className="pointer-events-auto">
-        <ChatFooter onSendMessage={handleSendMessage} />
+        <ChatFooter onSendMessage={handleSendMessage} soul={soulInstance} />
       </div>
       <ChatMessages messages={messages} />
     </div>
