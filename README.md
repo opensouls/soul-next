@@ -5,7 +5,7 @@
 
 1. `npm install`
 2. `npx soul-engine login` Login/Signup for the Soul Engine! 
-3. Copy .envsample and add your organization and API key. 
+3. Copy `.envsample`, rename to `.env` and add your organization and API key. 
 4. `npm run dev` awaken your first Soul.
 
 ## Things to see
