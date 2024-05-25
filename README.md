@@ -1,5 +1,4 @@
 ## 📖 OPEN SOULS Next.js Template
-=================
 
 ## ⚡ QuickStart
 
