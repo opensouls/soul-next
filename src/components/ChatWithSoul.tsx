@@ -12,6 +12,8 @@ function ChatWithSoul() {
   const soulProps = {
     organization: process.env.NEXT_PUBLIC_SOUL_ENGINE_ORGANIZATION as string,
     blueprint: process.env.NEXT_PUBLIC_SOUL_ENGINE_BLUEPRINT as string,
+    token: process.env.NEXT_PUBLIC_SOUL_ENGINE_APIKEY as string,
+    debug: process.env.NEXT_PUBLIC_SOUL_ENGINE_DEVELOPMENT === "true",
   }
 
   useEffect(() => {

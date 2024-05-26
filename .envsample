@@ -7,3 +7,4 @@ NEXT_PUBLIC_SOUL_ENGINE_BLUEPRINT='samantha-learns'
 # Get this key by using 'npx soul-engine apikey'
 # This enables the button to open the Soul Engine debugger.
 NEXT_PUBLIC_SOUL_ENGINE_APIKEY=''
+NEXT_PUBLIC_SOUL_ENGINE_DEVELOPMENT='true'
