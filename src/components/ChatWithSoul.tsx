@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Soul, said } from "@opensouls/soul";
+import { Soul, SoulOpts, said, Events } from "@opensouls/soul";
+import { SoulEvent } from "@opensouls/core";
 import ChatMessages from "./ChatMessages";
 import ChatFooter from "./ChatFooter";
 
@@ -9,11 +10,13 @@ function ChatWithSoul() {
   const [soulInstance, setSoulInstance] = useState<Soul | null>(null);
   const [initialized, setInitialized] = useState(false);
 
-  const soulProps = {
+  const soulProps: SoulOpts = {
     organization: process.env.NEXT_PUBLIC_SOUL_ENGINE_ORGANIZATION as string,
     blueprint: process.env.NEXT_PUBLIC_SOUL_ENGINE_BLUEPRINT as string,
     token: process.env.NEXT_PUBLIC_SOUL_ENGINE_APIKEY as string,
     debug: process.env.NEXT_PUBLIC_SOUL_ENGINE_DEVELOPMENT === "true",
+    local: process.env.NEXT_PUBLIC_SOUL_ENGINE_LOCAL === "true",
+    soulId: 'hello',
   }
 
   useEffect(() => {
@@ -26,6 +29,7 @@ function ChatWithSoul() {
       .connect()
       .then(() => {
         // Set up event listener for incoming messages
+        console.log("bigday today");
         soul.on("says", async ({ content }) => {
           const response = await content();
           // Update messages state with Soul's response
@@ -33,7 +37,21 @@ function ChatWithSoul() {
             ...prevMessages,
             { sender: "Soul", text: response },
           ]);
+          console.log('Events.says', JSON.stringify(response, null, 2));
         });
+
+        soul.on(Events.newSoulEvent, (evt: SoulEvent) => {
+          console.log('Events.newSoulEvent', JSON.stringify(evt, null, 2));
+        })
+
+        soul.on(Events.newInteractionRequest, (evt: SoulEvent) => {
+          console.log('Events.newInteractionRequest', JSON.stringify(evt, null, 2));
+        })
+
+        soul.on(Events.newPerception, (evt: SoulEvent) => {
+          console.log('Events.newPerception', JSON.stringify(evt, null, 2));
+        })
+
 
         // set up other events with soul.on("actionName",....)
       })
@@ -49,7 +67,10 @@ function ChatWithSoul() {
   }, []);
 
   useEffect(() => {
+    console.log('hi check');
+
     if (soulInstance && soulInstance.connected && !initialized) {
+      console.log('sending hi');
       soulInstance.dispatch(said("User", "Hi!")).catch((error) => {
         console.error("Failed to dispatch message:", error);
       });

@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "concurrently --kill-others \"npm run dev:soul\" \"npm run dev:client\"",
-    "dev:client": "next dev",
-    "dev:soul": "cd ./samantha-learns && npx soul-engine dev -n",
+    "dev:client": "next dev -p 3005",
+    "dev:soul": "cd ./samantha-learns && npx soul-engine dev -n -l --id hello",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@opensouls/engine": "^0.1.30",
+    "@opensouls/engine": "0.1.32",
     "@radix-ui/colors": "^3.0.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-form": "^0.0.3",
