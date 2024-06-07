@@ -25,11 +25,15 @@ function ChatWithSoul() {
     setSoulInstance(soul);
 
     // Connect to Soul
+    console.log("connecting");
+
     soul
       .connect()
       .then(() => {
+        console.log("connected");
+
         // Set up event listener for incoming messages
-        console.log("bigday today");
+
         soul.on("says", async ({ content }) => {
           const response = await content();
           // Update messages state with Soul's response
@@ -61,6 +65,7 @@ function ChatWithSoul() {
 
     return () => {
       if (soulInstance) {
+        console.log('disconnected');
         soulInstance.disconnect();
       }
     };
@@ -68,29 +73,36 @@ function ChatWithSoul() {
 
   useEffect(() => {
     console.log('hi check');
+    if(soulInstance) {
+      console.log(soulInstance);
+    }
 
     if (soulInstance && soulInstance.connected && !initialized) {
       console.log('sending hi');
+      
       soulInstance.dispatch(said("User", "Hi!")).catch((error) => {
         console.error("Failed to dispatch message:", error);
       });
       setInitialized(true);
     }
-  }, [soulInstance, initialized]);
+  }, [soulInstance, soulInstance?.connected, initialized]);
 
   // Function to handle sending a message
   const handleSendMessage = async (inputText: string) => {
     // Check if the Soul instance is started before dispatching a message
+    console.log('handleSendMessage');
     if (soulInstance && soulInstance.connected) {
       try {
+        console.log('sending');
         await soulInstance.dispatch(said("User", inputText));
         setMessages((prev) => [...prev, { sender: "User", text: inputText }]);
+        console.log('sent');
       } catch (err) {
         console.error("Failed to dispatch message:", err);
       }
     } else {
       console.error("Soul is not connected. Cannot dispatch message.");
-    }
+    } 
   };
 
   return (

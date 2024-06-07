@@ -11,7 +11,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@opensouls/core": "0.1.32",
     "@opensouls/engine": "0.1.32",
+    "@opensouls/soul": "0.1.32",
     "@radix-ui/colors": "^3.0.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-form": "^0.0.3",
