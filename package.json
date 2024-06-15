@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently --kill-others \"npm run dev:soul\" \"npm run dev:client\"",
     "dev:client": "next dev -p 3005",
-    "dev:soul": "ts-node ./scripts/devSouls.ts",
+    "dev:soul": "cd samantha-learns && npx soul-engine dev -n",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

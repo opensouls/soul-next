@@ -2,18 +2,30 @@
 
 import React, { useState, useEffect } from "react";
 import { Soul, SoulOpts, said, Events } from "@opensouls/soul";
-import { SoulEvent } from "@opensouls/core";
+import { ActionEvent } from "@opensouls/engine";
 import ChatMessages from "./ChatMessages";
 import ChatFooter from "./ChatFooter";
-import { samantha } from "../../scripts/souls";
+
+export const SOUL_DEBUG = process.env.NEXT_PUBLIC_SOUL_ENGINE_DEV === 'true';
+export const samantha: any = {
+  blueprint: 'samantha-learns',
+  organization: process.env.NEXT_PUBLIC_SOUL_ENGINE_ORGANIZATION as string,
+  token: SOUL_DEBUG ? process.env.NEXT_PUBLIC_SOUL_ENGINE_APIKEY : undefined,
+  debug: SOUL_DEBUG,
+}
+
+interface Message {
+  sender: string;
+  text: string;
+};
 
 function ChatWithSoul() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [soul, setSoul] = useState<Soul | null>(null);
 
 
   useEffect(() => {
-    
+
     // Create a new Soul instance
     const newSoul = new Soul(samantha);
     setSoul(newSoul);
@@ -21,25 +33,25 @@ function ChatWithSoul() {
     // Connect to Soul
     console.log("connecting");
 
-    const handleSays = async ({ content }) => {
+    const handleSays = async ({ content }: ActionEvent) => {
       const response = await content();
       setMessages((prevMessages) => [
         ...prevMessages,
         { sender: "Soul", text: response },
       ]);
     };
-    
+
     newSoul
       .connect()
       .then(() => {
         newSoul.on("says", handleSays);
-    
+
         // set up other events with soul.on("actionName",....)
       })
       .catch((error) => {
         console.error("Failed to connect to Soul:", error);
       });
-    
+
     return () => {
       if (newSoul) {
         newSoul.off("says", handleSays);
@@ -51,11 +63,6 @@ function ChatWithSoul() {
   }, []);
 
   useEffect(() => {
-    console.log('hi check');
-    if (soul) {
-      console.log(soul);
-    }
-
     if (soul && soul.connected) {
       soul.dispatch(said("User", "Hi!"))
         .catch((error) => {

@@ -38,14 +38,6 @@ const config: Config = {
         OS_mono_bold: ["IntelOneMono-Bold", "monospace"],
         OS_mono_bold_italic: ["IntelOneMono-BoldItalic", "monospace"],
       },
-      // Extend Tailwind colors with Radix colors
-      colors: {
-        ...Object.keys(colors).reduce((acc, key) => {
-          const colorGroup = colors[key];
-          acc[key] = colorGroup;
-          return acc;
-        }, {}),
-      },
     },
   },
   plugins: [],

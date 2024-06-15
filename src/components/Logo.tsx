@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const Logo = ({ src, alt, width, height, className }) => {
+const Logo = ({ src, alt, width, height, className }: any) => {
   const isSvg = src.endsWith('.svg');
 
   if (isSvg) {
@@ -23,7 +23,7 @@ const Logo = ({ src, alt, width, height, className }) => {
         src={src}
         alt={alt || "Open Souls Logo"}
         layout="fill"
-        objectFit="contain" 
+        objectFit="contain"
       />
     </div>
   );
