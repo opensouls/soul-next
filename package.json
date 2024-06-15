@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently --kill-others \"npm run dev:soul\" \"npm run dev:client\"",
-    "dev:client": "next dev -p 3005",
+    "dev:client": "next dev",
     "dev:soul": "cd samantha-learns && npx soul-engine dev -n",
     "build": "next build",
     "start": "next start",
