@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Button } from "@radix-ui/themes";
 import ChatInput from "./ChatInput";
-import SoulForm from "./SoulForm";
+
 import {
   ArrowUpIcon,
   DiscordLogoIcon,
@@ -19,12 +19,7 @@ interface ChatFooterProps {
 
 const ChatFooter: React.FC<ChatFooterProps> = ({ soul, soulProps, onSendMessage }) => {
   const [inputText, setInputText] = useState("");
-  const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false); // State to manage focus
-
-  const togglePanel = () => {
-    setIsPanelOpen(!isPanelOpen);
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
@@ -106,7 +101,6 @@ const ChatFooter: React.FC<ChatFooterProps> = ({ soul, soulProps, onSendMessage 
             <ArrowUpIcon />
           </Button>
         </div>
-        <SoulForm isOpen={isPanelOpen} onClose={togglePanel} />
       </div>
     </>
   );

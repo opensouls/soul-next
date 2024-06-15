@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const Discord = ({ src, alt, width, height, className }) => {
+const Discord = ({ src, alt, width, height, className }: any) => {
   const isSvg = src.endsWith('.svg');
 
   if (isSvg) {
@@ -23,7 +23,7 @@ const Discord = ({ src, alt, width, height, className }) => {
         src={src}
         alt={alt || "Join our Community on Discord"}
         layout="fill"
-        objectFit="contain" 
+        objectFit="contain"
       />
     </div>
   );

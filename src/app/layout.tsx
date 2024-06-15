@@ -18,7 +18,6 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Theme
-          grayColor="slateDark"
           accentColor="iris"
           appearance="dark"
           panelBackground="translucent"

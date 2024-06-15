@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-export const FireParticles = ({ count, color }) => {
+export const FireParticles = ({ count, color }: any) => {
   const mesh = useRef<THREE.Points>(null);
 
   // Initialize particle positions within a circular area (inside the vessel)
@@ -33,7 +33,10 @@ export const FireParticles = ({ count, color }) => {
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
 
-    mesh.current.geometry = geometry;
+    if(mesh.current) { 
+      mesh.current.geometry = geometry;
+    }
+    
   }, [count]);
 
   // Animate particles to simulate fire and gravity

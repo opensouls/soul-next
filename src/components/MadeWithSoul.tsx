@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const MadeWithSoul = ({ src, alt, width, height, className }) => {
+const MadeWithSoul = ({ src, alt, width, height, className }: any) => {
   const isSvg = src.endsWith('.svg');
 
   if (isSvg) {
@@ -23,7 +23,7 @@ const MadeWithSoul = ({ src, alt, width, height, className }) => {
         src={src}
         alt={alt || "Made with the Soul Engine"}
         layout="fill"
-        objectFit="contain" 
+        objectFit="contain"
       />
     </div>
   );
