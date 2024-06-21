@@ -9,10 +9,10 @@
 ## ⚡ QuickStart
 
 Open a terminal to the project folder and run the following commands:
-1. `npm install`
+1. `bun i`
 2. `npx soul-engine login` Login/Signup for the Soul Engine! 
 3. Copy `.envsample`, rename to `.env` and add your organization and API key. 
-4. Enter `npm run dev` to awaken your first Soul.
+4. Enter `bun dev` to awaken your first Soul.
 5. Open browser to [http://localhost:3000/](http://localhost:3000/)
 5. Learn more at [https://docs.souls.chat/](https://docs.souls.chat/).
 
