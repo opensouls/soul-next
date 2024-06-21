@@ -7,8 +7,8 @@ import ChatMessages from "./ChatMessages";
 import ChatFooter from "./ChatFooter";
 
 export const SOUL_DEBUG = process.env.NEXT_PUBLIC_SOUL_ENGINE_DEV === 'true';
-export const samantha: any = {
-  blueprint: 'samantha-learns',
+export const soulOpts: SoulOpts = {
+  blueprint: process.env.NEXT_PUBLIC_SOUL_ENGINE_BLUEPRINT as string,
   organization: process.env.NEXT_PUBLIC_SOUL_ENGINE_ORGANIZATION as string,
   token: SOUL_DEBUG ? process.env.NEXT_PUBLIC_SOUL_ENGINE_APIKEY : undefined,
   debug: SOUL_DEBUG,
@@ -27,7 +27,7 @@ function ChatWithSoul() {
   useEffect(() => {
 
     // Create a new Soul instance
-    const newSoul = new Soul(samantha);
+    const newSoul = new Soul(soulOpts);
     setSoul(newSoul);
 
     // Connect to Soul
@@ -90,7 +90,7 @@ function ChatWithSoul() {
   return (
     <div className="container">
       <div className="pointer-events-auto">
-        <ChatFooter onSendMessage={handleSendMessage} soul={soul} soulProps={samantha} />
+        <ChatFooter onSendMessage={handleSendMessage} soul={soul} soulProps={soulOpts} />
       </div>
       <ChatMessages messages={messages} />
     </div>
